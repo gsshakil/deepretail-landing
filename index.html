@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bento - AI-Powered Retail ERP & E-commerce Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            /* Primary brand colors - Oxford Blue */
+            --color-primary-50: #f0f4f8;
+            --color-primary-100: #d9e2ec;
+            --color-primary-200: #bcccdc;
+            --color-primary-300: #9fb3c8;
+            --color-primary-400: #829ab1;
+            --color-primary-500: #627d98;
+            --color-primary-600: #486581;
+            --color-primary-700: #334e68;
+            --color-primary-800: #243b53;
+            --color-primary-900: #102a43;
+            
+            /* Secondary colors - Complementary blues */
+            --color-secondary-500: #0073e6;
+            --color-secondary-600: #0059b3;
+            --color-secondary-700: #004080;
+            
+            /* Accent color for highlights */
+            --color-accent-500: #4cc3ff;
+            
+            /* Background colors */
+            --color-bg-primary: #ffffff;
+            --color-bg-secondary: #f9fafb;
+            --color-bg-accent: var(--color-primary-600);
+            
+            /* Text colors */
+            --color-text-primary: #1f2937;
+            --color-text-secondary: #6b7280;
+            --color-text-accent: var(--color-primary-600);
+            --color-text-on-primary: #ffffff;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom utility classes that use our CSS variables */
+        .text-primary {
+            color: var(--color-primary-600);
+        }
+        .text-primary-light {
+            color: var(--color-primary-400);
+        }
+        .text-primary-lightest {
+            color: var(--color-primary-100);
+        }
+        .text-primary-dark {
+            color: var(--color-primary-800);
+        }
+        .text-secondary {
+            color: var(--color-secondary-600);
+        }
+        .text-accent {
+            color: var(--color-accent-500);
+        }
+        .text-on-primary {
+            color: var(--color-text-on-primary);
+        }
+        .bg-primary {
+            background-color: var(--color-primary-600);
+        }
+        .bg-primary-light {
+            background-color: var(--color-primary-100);
+        }
+        .bg-primary-lighter {
+            background-color: var(--color-primary-50);
+        }
+        .bg-primary-dark {
+            background-color: var(--color-primary-700);
+        }
+        .bg-primary-darker {
+            background-color: var(--color-primary-800);
+        }
+        .bg-secondary {
+            background-color: var(--color-secondary-600);
+        }
+        .bg-accent {
+            background-color: var(--color-accent-500);
+        }
+        .hover-bg-primary-dark:hover {
+            background-color: var(--color-primary-700);
+        }
+        .hover-bg-primary-light:hover {
+            background-color: var(--color-primary-50);
+        }
+        .hover-text-primary:hover {
+            color: var(--color-primary-600);
+        }
+        .border-primary {
+            border-color: var(--color-primary-600);
+        }
+        .ring-primary {
+            --tw-ring-color: var(--color-primary-100);
+        }
+        .focus-ring-primary:focus {
+            --tw-ring-color: var(--color-primary-500);
+            outline: none;
+            --tw-ring-offset-width: 2px;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(120deg, var(--color-secondary-600), var(--color-primary-600), var(--color-primary-800));
+            background-size: 200% 200%;
+            animation: gradientBg 15s ease infinite;
+        }
+
+        @keyframes gradientBg {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        .pulse-slow {
+            animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse-slow {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.4);
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-900">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white bg-opacity-90 backdrop-blur-sm shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <svg class="h-8 w-auto text-primary" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                        </svg>
+                        <span class="ml-2 text-xl font-bold text-gray-900">Bento</span>
+                    </div>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:items-center space-x-8">
+                    <a href="#features"
+                        class="font-medium text-gray-700 hover-text-primary transition-colors">Features</a>
+                    <a href="#modules"
+                        class="font-medium text-gray-700 hover-text-primary transition-colors">Modules</a>
+                    <a href="#ai" class="font-medium text-gray-700 hover-text-primary transition-colors">AI
+                        Capabilities</a>
+                    <a href="#testimonials"
+                        class="font-medium text-gray-700 hover-text-primary transition-colors">Testimonials</a>
+                    <a href="#contact"
+                        class="font-medium text-gray-700 hover-text-primary transition-colors">Contact</a>
+                </div>
+                <div class="flex items-center">
+                    <a href="#demo"
+                        class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-on-primary bg-primary hover-bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                        Get Demo
+                    </a>
+                    <button
+                        class="ml-2 sm:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary0">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="gradient-bg pt-40 pb-36 sm:pt-48 sm:pb-40 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-12 lg:gap-8 lg:items-center">
+                <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
+                    <h1 data-aos="fade-up" data-aos-duration="800">
+                        <span class="block text-sm font-semibold uppercase tracking-wide text-primary-lightest">Revolutionizing
+                            Retail</span>
+                        <span
+                            class="mt-1 block text-4xl tracking-tight font-extrabold sm:text-5xl xl:text-6xl text-white">
+                            <span>AI-Powered</span>
+                            <span class="text-primary-lightest"> Retail ERP</span>
+                        </span>
+                    </h1>
+                    <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="100"
+                        class="mt-3 text-base text-primary-lightest sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
+                        Unified platform that seamlessly integrates inventory, sales, customer management, and
+                        e-commerce with cutting-edge AI to transform your retail business.
+                    </p>
+                    <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="200" class="mt-8 sm:mt-10">
+                        <div class="rounded-md shadow">
+                            <a href="#contact"
+                                class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary-dark bg-white hover-bg-primary-light md:py-4 md:text-lg md:px-10">
+                                Get Started
+                            </a>
+                        </div>
+                        <div class="mt-3">
+                            <a href="#demo"
+                                class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-darker bg-opacity-60 hover:bg-opacity-70 md:py-4 md:text-lg md:px-10">
+                                Watch Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-12 sm:mt-16 lg:mt-0 lg:col-span-6" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
+                        <div class="relative block w-full bg-white rounded-lg overflow-hidden">
+                            <img class="w-full floating"
+                                src="https://images.unsplash.com/photo-1661956602944-249bcd04b63f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600&q=80"
+                                alt="Bento Dashboard">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <button type="button"
+                                    class="pulse flex items-center justify-center h-20 w-20 rounded-full bg-primary text-white">
+                                    <svg class="h-10 w-10" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Problem-Solution Section -->
+    <div class="py-28 bg-primary-lighter overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 data-aos="fade-up" class="text-base font-semibold text-primary tracking-wide uppercase">The Retail Challenge</h2>
+                <p data-aos="fade-up" data-aos-delay="100" class="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight">
+                    From Chaos to Clarity
+                </p>
+                <p data-aos="fade-up" data-aos-delay="150" class="mt-5 max-w-3xl mx-auto text-xl text-gray-600">
+                    See how Bento transforms the overwhelming complexity of retail management into a streamlined, AI-powered solution.
+                </p>
+            </div>
+
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+                <!-- Problem Visualization -->
+                <div data-aos="fade-right" data-aos-delay="200" class="relative mb-12 lg:mb-0">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">The Challenge</h3>
+                        <p class="text-gray-600">Traditional retail management is overwhelming, fragmented, and inefficient</p>
+                    </div>
+                    <div class="relative rounded-xl overflow-hidden shadow-xl">
+                        <!-- This would ideally be a custom illustration showing retail chaos with multiple problems -->
+                        <img class="w-full" src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Retail Management Challenges">
+                        
+                        <!-- Overlaid problem indicators -->
+                        <div class="absolute top-1/4 left-1/4 bg-red-500 bg-opacity-90 text-white rounded-full p-2 shadow-lg transform -translate-x-1/2 -translate-y-1/2 pulse-slow">
+                            <span class="text-xs font-medium">Inventory Chaos</span>
+                        </div>
+                        <div class="absolute top-1/2 right-1/4 bg-red-500 bg-opacity-90 text-white rounded-full p-2 shadow-lg transform translate-x-1/2 -translate-y-1/2 pulse-slow" style="animation-delay: 0.5s;">
+                            <span class="text-xs font-medium">Customer Data Silos</span>
+                        </div>
+                        <div class="absolute bottom-1/3 left-1/3 bg-red-500 bg-opacity-90 text-white rounded-full p-2 shadow-lg transform -translate-x-1/2 translate-y-1/2 pulse-slow" style="animation-delay: 1s;">
+                            <span class="text-xs font-medium">Manual Reporting</span>
+                        </div>
+                        <div class="absolute top-2/3 right-1/3 bg-red-500 bg-opacity-90 text-white rounded-full p-2 shadow-lg transform translate-x-1/2 translate-y-1/2 pulse-slow" style="animation-delay: 1.5s;">
+                            <span class="text-xs font-medium">Disconnected Systems</span>
+                        </div>
+                        <div class="absolute bottom-1/4 right-1/5 bg-red-500 bg-opacity-90 text-white rounded-full p-2 shadow-lg transform translate-x-1/2 translate-y-1/2 pulse-slow" style="animation-delay: 2s;">
+                            <span class="text-xs font-medium">Multi-Channel Chaos</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Solution Visualization -->
+                <div data-aos="fade-left" data-aos-delay="400" class="relative">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">The Solution</h3>
+                        <p class="text-gray-600">Bento brings everything together with AI-powered simplicity</p>
+                    </div>
+                    <div class="relative rounded-xl overflow-hidden shadow-xl">
+                        <!-- This would ideally be a custom illustration showing the organized Bento solution -->
+                        <img class="w-full" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Bento Solution">
+                        
+                        <!-- Overlaid solution indicators -->
+                        <div class="absolute top-1/4 left-1/4 bg-primary bg-opacity-90 text-white rounded-full p-2 shadow-lg transform -translate-x-1/2 -translate-y-1/2 pulse-slow">
+                            <span class="text-xs font-medium">Smart Inventory</span>
+                        </div>
+                        <div class="absolute top-1/2 right-1/4 bg-primary bg-opacity-90 text-white rounded-full p-2 shadow-lg transform translate-x-1/2 -translate-y-1/2 pulse-slow" style="animation-delay: 0.5s;">
+                            <span class="text-xs font-medium">360° Customer View</span>
+                        </div>
+                        <div class="absolute bottom-1/3 left-1/3 bg-primary bg-opacity-90 text-white rounded-full p-2 shadow-lg transform -translate-x-1/2 translate-y-1/2 pulse-slow" style="animation-delay: 1s;">
+                            <span class="text-xs font-medium">Automated Reports</span>
+                        </div>
+                        <div class="absolute top-2/3 right-1/3 bg-primary bg-opacity-90 text-white rounded-full p-2 shadow-lg transform translate-x-1/2 translate-y-1/2 pulse-slow" style="animation-delay: 1.5s;">
+                            <span class="text-xs font-medium">Unified Platform</span>
+                        </div>
+                        <div class="absolute bottom-1/4 right-1/5 bg-primary bg-opacity-90 text-white rounded-full p-2 shadow-lg transform translate-x-1/2 translate-y-1/2 pulse-slow" style="animation-delay: 2s;">
+                            <span class="text-xs font-medium">Omni-Channel Integration</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center">
+                <a href="#features" class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover-bg-primary-dark transition-colors">
+                    Discover How It Works
+                    <svg class="ml-2 -mr-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div id="features" class="py-32 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 data-aos="fade-up" class="text-base font-semibold text-primary tracking-wide uppercase">Features
+                </h2>
+                <p data-aos="fade-up" data-aos-delay="100"
+                    class="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight">
+                    Everything you need to succeed
+                </p>
+                <p data-aos="fade-up" data-aos-delay="200" class="max-w-xl mt-6 mb-2 mx-auto text-xl text-gray-500">
+                    Our comprehensive platform integrates all aspects of retail management with powerful AI
+                    capabilities.
+                </p>
+            </div>
+
+            <div class="mt-20">
+                <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                    <!-- Feature 1 -->
+                    <div data-aos="fade-up" data-aos-delay="100" class="pt-10 card-hover transition-all duration-150">
+                        <div class="flow-root bg-white rounded-lg px-6 pb-8">
+                            <div class="-mt-6">
+                                <div>
+                                    <span
+                                        class="inline-flex items-center justify-center p-3 bg-primary rounded-md shadow-lg">
+                                        <i class="fas fa-store text-white text-2xl"></i>
+                                    </span>
+                                </div>
+                                <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">Unified Platform</h3>
+                                <p class="mt-5 text-base text-gray-500">
+                                    Seamlessly integrate inventory, sales, customer management, and e-commerce in one
+                                    comprehensive platform.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div data-aos="fade-up" data-aos-delay="200" class="pt-10 card-hover transition-all duration-150">
+                        <div class="flow-root bg-white rounded-lg px-6 pb-8">
+                            <div class="-mt-6">
+                                <div>
+                                    <span
+                                        class="inline-flex items-center justify-center p-3 bg-primary rounded-md shadow-lg">
+                                        <i class="fas fa-robot text-white text-2xl"></i>
+                                    </span>
+                                </div>
+                                <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">AI-Driven Insights
+                                </h3>
+                                <p class="mt-5 text-base text-gray-500">
+                                    Leverage machine learning for predictive inventory management, personalized customer
+                                    experiences, and data-driven decisions.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div data-aos="fade-up" data-aos-delay="300" class="pt-10 card-hover transition-all duration-150">
+                        <div class="flow-root bg-white rounded-lg px-6 pb-8">
+                            <div class="-mt-6">
+                                <div>
+                                    <span
+                                        class="inline-flex items-center justify-center p-3 bg-primary rounded-md shadow-lg">
+                                        <i class="fas fa-shopping-cart text-white text-2xl"></i>
+                                    </span>
+                                </div>
+                                <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">E-commerce Integration
+                                </h3>
+                                <p class="mt-5 text-base text-gray-500">
+                                    Powerful online storefront with AI-enhanced search, personalized recommendations,
+                                    and seamless checkout.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div data-aos="fade-up" data-aos-delay="400" class="pt-10 card-hover transition-all duration-150">
+                        <div class="flow-root bg-white rounded-lg px-6 pb-8">
+                            <div class="-mt-6">
+                                <div>
+                                    <span
+                                        class="inline-flex items-center justify-center p-3 bg-primary rounded-md shadow-lg">
+                                        <i class="fas fa-chart-line text-white text-2xl"></i>
+                                    </span>
+                                </div>
+                                <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">Real-time Analytics
+                                </h3>
+                                <p class="mt-5 text-base text-gray-500">
+                                    Comprehensive dashboards and reports to track KPIs, sales trends, and business
+                                    performance.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 5 -->
+                    <div data-aos="fade-up" data-aos-delay="500" class="pt-10 card-hover transition-all duration-150">
+                        <div class="flow-root bg-white rounded-lg px-6 pb-8">
+                            <div class="-mt-6">
+                                <div>
+                                    <span
+                                        class="inline-flex items-center justify-center p-3 bg-primary rounded-md shadow-lg">
+                                        <i class="fas fa-users text-white text-2xl"></i>
+                                    </span>
+                                </div>
+                                <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">Customer 360</h3>
+                                <p class="mt-5 text-base text-gray-500">
+                                    Comprehensive view of customer interactions, preferences, and purchase history for
+                                    personalized service.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 6 -->
+                    <div data-aos="fade-up" data-aos-delay="600" class="pt-10 card-hover transition-all duration-150">
+                        <div class="flow-root bg-white rounded-lg px-6 pb-8">
+                            <div class="-mt-6">
+                                <div>
+                                    <span
+                                        class="inline-flex items-center justify-center p-3 bg-primary rounded-md shadow-lg">
+                                        <i class="fas fa-mobile-alt text-white text-2xl"></i>
+                                    </span>
+                                </div>
+                                <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">Mobile-First Design
+                                </h3>
+                                <p class="mt-5 text-base text-gray-500">
+                                    Responsive interface that works seamlessly across desktop, tablet, and mobile
+                                    devices.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature 7 - Multi-Channel Chaos -->
+                    <div data-aos="fade-up" data-aos-delay="700" class="pt-10 card-hover transition-all duration-150">
+                        <div class="flow-root bg-white rounded-lg px-6 pb-8">
+                            <div class="-mt-6">
+                                <div>
+                                    <span
+                                        class="inline-flex items-center justify-center p-3 bg-primary rounded-md shadow-lg">
+                                        <i class="fas fa-random text-white text-2xl"></i>
+                                    </span>
+                                </div>
+                                <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">Multi-Channel Management</h3>
+                                <p class="mt-5 text-base text-gray-500">
+                                    Centralize control of all sales channels - physical stores, e-commerce, marketplaces, and social selling - from a single dashboard.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 8 - Seamless Integration -->
+                    <div data-aos="fade-up" data-aos-delay="800" class="pt-10 card-hover transition-all duration-150">
+                        <div class="flow-root bg-white rounded-lg px-6 pb-8">
+                            <div class="-mt-6">
+                                <div>
+                                    <span
+                                        class="inline-flex items-center justify-center p-3 bg-primary rounded-md shadow-lg">
+                                        <i class="fas fa-plug text-white text-2xl"></i>
+                                    </span>
+                                </div>
+                                <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">Seamless Integration</h3>
+                                <p class="mt-5 text-base text-gray-500">
+                                    Connect with your existing tools and systems through our extensive API and pre-built integrations with popular services.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 9 - Many More -->
+                    <div data-aos="fade-up" data-aos-delay="900" class="pt-10 card-hover transition-all duration-150">
+                        <div class="flow-root bg-white rounded-lg px-6 pb-8">
+                            <div class="-mt-6">
+                                <div>
+                                    <span
+                                        class="inline-flex items-center justify-center p-3 bg-primary rounded-md shadow-lg">
+                                        <i class="fas fa-ellipsis-h text-white text-2xl"></i>
+                                    </span>
+                                </div>
+                                <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">And Many More...</h3>
+                                <p class="mt-5 text-base text-gray-500">
+                                    Discover all the powerful features that make DeepRetail the most comprehensive retail management solution in the market.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Show All Features Button -->
+                <div class="mt-12 text-center">
+                    <a href="#" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors">
+                        <span>View All Features</span>
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modules Section -->
+    <div id="modules" class="py-32 bg-gray-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 data-aos="fade-up" class="text-base font-semibold text-primary tracking-wide uppercase">
+                    Comprehensive Modules</h2>
+                <p data-aos="fade-up" data-aos-delay="100"
+                    class="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight">
+                    Integrated business management
+                </p>
+                <p data-aos="fade-up" data-aos-delay="200" class="max-w-xl mt-6 mb-2 mx-auto text-xl text-gray-500">
+                    Our modular platform grows with your business, providing all the tools you need.
+                </p>
+            </div>
+
+            <div class="mt-16 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4">
+                <!-- Module 1 -->
+                <div data-aos="fade-up" data-aos-delay="100"
+                    class="group relative bg-white p-6 rounded-lg shadow-sm card-hover transition-all duration-150">
+                    <div class="rounded-lg inline-flex p-3 ring-4 ring-amber-50 text-primary bg-primary-light mb-4">
+                        <i class="fas fa-boxes text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900">Inventory Management</h3>
+                    <p class="mt-3 text-sm text-gray-500">Track stock levels, manage suppliers, and automate reordering
+                        with AI-driven forecasting.</p>
+                </div>
+
+                <!-- Module 2 -->
+                <div data-aos="fade-up" data-aos-delay="200"
+                    class="group relative bg-white p-6 rounded-lg shadow-sm card-hover transition-all duration-150">
+                    <div class="rounded-lg inline-flex p-3 ring-4 ring-amber-50 text-primary bg-primary-light mb-4">
+                        <i class="fas fa-shopping-bag text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900">Sales Management</h3>
+                    <p class="mt-3 text-sm text-gray-500">Streamline point-of-sale operations, manage orders, invoices,
+                        and returns seamlessly.</p>
+                </div>
+
+                <!-- Module 3 -->
+                <div data-aos="fade-up" data-aos-delay="300"
+                    class="group relative bg-white p-6 rounded-lg shadow-sm card-hover transition-all duration-150">
+                    <div class="rounded-lg inline-flex p-3 ring-4 ring-amber-50 text-primary bg-primary-light mb-4">
+                        <i class="fas fa-user-friends text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900">CRM</h3>
+                    <p class="mt-3 text-sm text-gray-500">Manage customer relationships, track interactions, and nurture
+                        leads with AI-powered insights.</p>
+                </div>
+
+                <!-- Module 4 -->
+                <div data-aos="fade-up" data-aos-delay="400"
+                    class="group relative bg-white p-6 rounded-lg shadow-sm card-hover transition-all duration-150">
+                    <div class="rounded-lg inline-flex p-3 ring-4 ring-amber-50 text-primary bg-primary-light mb-4">
+                        <i class="fas fa-globe text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900">E-commerce</h3>
+                    <p class="mt-3 text-sm text-gray-500">Create stunning online stores with personalized shopping
+                        experiences and AI recommendations.</p>
+                </div>
+
+                <!-- Module 5 -->
+                <div data-aos="fade-up" data-aos-delay="500"
+                    class="group relative bg-white p-6 rounded-lg shadow-sm card-hover transition-all duration-150">
+                    <div class="rounded-lg inline-flex p-3 ring-4 ring-amber-50 text-primary bg-primary-light mb-4">
+                        <i class="fas fa-calculator text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900">Accounting</h3>
+                    <p class="mt-3 text-sm text-gray-500">Manage finances, track expenses, generate reports, and
+                        streamline tax preparation.</p>
+                </div>
+
+                <!-- Module 6 -->
+                <div data-aos="fade-up" data-aos-delay="600"
+                    class="group relative bg-white p-6 rounded-lg shadow-sm card-hover transition-all duration-150">
+                    <div class="rounded-lg inline-flex p-3 ring-4 ring-amber-50 text-primary bg-primary-light mb-4">
+                        <i class="fas fa-bullhorn text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900">Marketing</h3>
+                    <p class="mt-3 text-sm text-gray-500">Plan campaigns, manage promotions, and track performance with
+                        AI-optimized targeting.</p>
+                </div>
+
+                <!-- Module 7 -->
+                <div data-aos="fade-up" data-aos-delay="700"
+                    class="group relative bg-white p-6 rounded-lg shadow-sm card-hover transition-all duration-150">
+                    <div class="rounded-lg inline-flex p-3 ring-4 ring-amber-50 text-primary bg-primary-light mb-4">
+                        <i class="fas fa-user-tie text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900">HRM</h3>
+                    <p class="mt-3 text-sm text-gray-500">Manage employees, track time, process payroll, and optimize
+                        workforce scheduling.</p>
+                </div>
+
+                <!-- Module 8 -->
+                <div data-aos="fade-up" data-aos-delay="800"
+                    class="group relative bg-white p-6 rounded-lg shadow-sm card-hover transition-all duration-150">
+                    <div class="rounded-lg inline-flex p-3 ring-4 ring-amber-50 text-primary bg-primary-light mb-4">
+                        <i class="fas fa-chart-pie text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900">Analytics</h3>
+                    <p class="mt-3 text-sm text-gray-500">Gain insights with real-time reporting, dashboards, and
+                        AI-powered business intelligence.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Retail Categories Section -->
+    <div id="categories" class="py-32 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 data-aos="fade-up" class="text-base font-semibold text-primary tracking-wide uppercase">Versatile Solution</h2>
+                <p data-aos="fade-up" data-aos-delay="100"
+                    class="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight">
+                    For every retail category
+                </p>
+                <p data-aos="fade-up" data-aos-delay="200" class="max-w-xl mt-6 mb-2 mx-auto text-xl text-gray-500">
+                    Bento adapts to the unique needs of all retail businesses, from boutique shops to large enterprises.
+                </p>
+            </div>
+
+            <div class="mt-16 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
+                <!-- Category 1 -->
+                <div data-aos="fade-up" data-aos-delay="100" 
+                    class="text-center bg-primary-lighter p-5 rounded-lg transition-all duration-150 hover:shadow-lg hover:-translate-y-1">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-light text-primary mb-4">
+                        <i class="fas fa-laptop text-xl"></i>
+                    </div>
+                    <h3 class="text-gray-900 font-medium">Electronics</h3>
+                </div>
+
+                <!-- Category 2 -->
+                <div data-aos="fade-up" data-aos-delay="150" 
+                    class="text-center bg-primary-lighter p-5 rounded-lg transition-all duration-150 hover:shadow-lg hover:-translate-y-1">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-light text-primary mb-4">
+                        <i class="fas fa-utensils text-xl"></i>
+                    </div>
+                    <h3 class="text-gray-900 font-medium">Restaurants</h3>
+                </div>
+
+                <!-- Category 3 -->
+                <div data-aos="fade-up" data-aos-delay="200" 
+                    class="text-center bg-primary-lighter p-5 rounded-lg transition-all duration-150 hover:shadow-lg hover:-translate-y-1">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-light text-primary mb-4">
+                        <i class="fas fa-prescription-bottle-alt text-xl"></i>
+                    </div>
+                    <h3 class="text-gray-900 font-medium">Pharmacy</h3>
+                </div>
+
+                <!-- Category 4 -->
+                <div data-aos="fade-up" data-aos-delay="250" 
+                    class="text-center bg-primary-lighter p-5 rounded-lg transition-all duration-150 hover:shadow-lg hover:-translate-y-1">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-light text-primary mb-4">
+                        <i class="fas fa-tshirt text-xl"></i>
+                    </div>
+                    <h3 class="text-gray-900 font-medium">Fashion & Apparel</h3>
+                </div>
+
+                <!-- Category 5 -->
+                <div data-aos="fade-up" data-aos-delay="300" 
+                    class="text-center bg-primary-lighter p-5 rounded-lg transition-all duration-150 hover:shadow-lg hover:-translate-y-1">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-light text-primary mb-4">
+                        <i class="fas fa-shopping-basket text-xl"></i>
+                    </div>
+                    <h3 class="text-gray-900 font-medium">Grocery</h3>
+                </div>
+
+                <!-- Category 6 -->
+                <div data-aos="fade-up" data-aos-delay="350" 
+                    class="text-center bg-primary-lighter p-5 rounded-lg transition-all duration-150 hover:shadow-lg hover:-translate-y-1">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-light text-primary mb-4">
+                        <i class="fas fa-gem text-xl"></i>
+                    </div>
+                    <h3 class="text-gray-900 font-medium">Jewelry</h3>
+                </div>
+
+                <!-- Category 7 -->
+                <div data-aos="fade-up" data-aos-delay="400" 
+                    class="text-center bg-primary-lighter p-5 rounded-lg transition-all duration-150 hover:shadow-lg hover:-translate-y-1">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-light text-primary mb-4">
+                        <i class="fas fa-book text-xl"></i>
+                    </div>
+                    <h3 class="text-gray-900 font-medium">Bookstores</h3>
+                </div>
+
+                <!-- Category 8 -->
+                <div data-aos="fade-up" data-aos-delay="450" 
+                    class="text-center bg-primary-lighter p-5 rounded-lg transition-all duration-150 hover:shadow-lg hover:-translate-y-1">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-light text-primary mb-4">
+                        <i class="fas fa-couch text-xl"></i>
+                    </div>
+                    <h3 class="text-gray-900 font-medium">Furniture</h3>
+                </div>
+
+                <!-- Category 9 -->
+                <div data-aos="fade-up" data-aos-delay="500" 
+                    class="text-center bg-primary-lighter p-5 rounded-lg transition-all duration-150 hover:shadow-lg hover:-translate-y-1">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-light text-primary mb-4">
+                        <i class="fas fa-heartbeat text-xl"></i>
+                    </div>
+                    <h3 class="text-gray-900 font-medium">Health & Beauty</h3>
+                </div>
+
+                <!-- Category 10 -->
+                <div data-aos="fade-up" data-aos-delay="550" 
+                    class="text-center bg-primary-lighter p-5 rounded-lg transition-all duration-150 hover:shadow-lg hover:-translate-y-1">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-light text-primary mb-4">
+                        <i class="fas fa-baby text-xl"></i>
+                    </div>
+                    <h3 class="text-gray-900 font-medium">Baby Products</h3>
+                </div>
+
+                <!-- Category 11 -->
+                <div data-aos="fade-up" data-aos-delay="600" 
+                    class="text-center bg-primary-lighter p-5 rounded-lg transition-all duration-150 hover:shadow-lg hover:-translate-y-1">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-light text-primary mb-4">
+                        <i class="fas fa-futbol text-xl"></i>
+                    </div>
+                    <h3 class="text-gray-900 font-medium">Sporting Goods</h3>
+                </div>
+
+                <!-- Category 12 -->
+                <div data-aos="fade-up" data-aos-delay="650" 
+                    class="text-center bg-primary-lighter p-5 rounded-lg transition-all duration-150 hover:shadow-lg hover:-translate-y-1">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-light text-primary mb-4">
+                        <i class="fas fa-wine-bottle text-xl"></i>
+                    </div>
+                    <h3 class="text-gray-900 font-medium">Liquor & Wine</h3>
+                </div>
+
+                <!-- Category 13 -->
+                <div data-aos="fade-up" data-aos-delay="700" 
+                    class="text-center bg-primary-lighter p-5 rounded-lg transition-all duration-150 hover:shadow-lg hover:-translate-y-1">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-light text-primary mb-4">
+                        <i class="fas fa-paw text-xl"></i>
+                    </div>
+                    <h3 class="text-gray-900 font-medium">Pet Supplies</h3>
+                </div>
+
+                <!-- Category 14 -->
+                <div data-aos="fade-up" data-aos-delay="750" 
+                    class="text-center bg-primary-lighter p-5 rounded-lg transition-all duration-150 hover:shadow-lg hover:-translate-y-1">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-light text-primary mb-4">
+                        <i class="fas fa-tools text-xl"></i>
+                    </div>
+                    <h3 class="text-gray-900 font-medium">Hardware</h3>
+                </div>
+
+                <!-- Category 15 -->
+                <div data-aos="fade-up" data-aos-delay="800" 
+                    class="text-center bg-primary-lighter p-5 rounded-lg transition-all duration-150 hover:shadow-lg hover:-translate-y-1">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-light text-primary mb-4">
+                        <i class="fas fa-gifts text-xl"></i>
+                    </div>
+                    <h3 class="text-gray-900 font-medium">Gift Shops</h3>
+                </div>
+
+                <!-- Category 16 -->
+                <div data-aos="fade-up" data-aos-delay="850" 
+                    class="text-center bg-primary-lighter p-5 rounded-lg transition-all duration-150 hover:shadow-lg hover:-translate-y-1">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-light text-primary mb-4">
+                        <i class="fas fa-music text-xl"></i>
+                    </div>
+                    <h3 class="text-gray-900 font-medium">Music & Instruments</h3>
+                </div>
+
+                <!-- Category 17 -->
+                <div data-aos="fade-up" data-aos-delay="900" 
+                    class="text-center bg-primary-lighter p-5 rounded-lg transition-all duration-150 hover:shadow-lg hover:-translate-y-1">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-light text-primary mb-4">
+                        <i class="fas fa-paint-brush text-xl"></i>
+                    </div>
+                    <h3 class="text-gray-900 font-medium">Art Supplies</h3>
+                </div>
+
+                <!-- Category 18 -->
+                <div data-aos="fade-up" data-aos-delay="950" 
+                    class="text-center bg-primary-lighter p-5 rounded-lg transition-all duration-150 hover:shadow-lg hover:-translate-y-1">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-light text-primary mb-4">
+                        <i class="fas fa-eye text-xl"></i>
+                    </div>
+                    <h3 class="text-gray-900 font-medium">Optical Shops</h3>
+                </div>
+                
+                <!-- Category 19 -->
+                <div data-aos="fade-up" data-aos-delay="1000" 
+                    class="text-center bg-primary-lighter p-5 rounded-lg transition-all duration-150 hover:shadow-lg hover:-translate-y-1">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-light text-primary mb-4">
+                        <i class="fas fa-shoe-prints text-xl"></i>
+                    </div>
+                    <h3 class="text-gray-900 font-medium">Footwear</h3>
+                </div>
+                
+                <!-- Category 20 -->
+                <div data-aos="fade-up" data-aos-delay="1050" 
+                    class="text-center bg-primary-lighter p-5 rounded-lg transition-all duration-150 hover:shadow-lg hover:-translate-y-1">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-light text-primary mb-4">
+                        <i class="fas fa-cannabis text-xl"></i>
+                    </div>
+                    <h3 class="text-gray-900 font-medium">Dispensaries</h3>
+                </div>
+                
+                <!-- Category 21 -->
+                <div data-aos="fade-up" data-aos-delay="1100" 
+                    class="text-center bg-primary-lighter p-5 rounded-lg transition-all duration-150 hover:shadow-lg hover:-translate-y-1">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-light text-primary mb-4">
+                        <i class="fas fa-mobile-alt text-xl"></i>
+                    </div>
+                    <h3 class="text-gray-900 font-medium">Mobile Stores</h3>
+                </div>
+                
+                <!-- Category 22 -->
+                <div data-aos="fade-up" data-aos-delay="1150" 
+                    class="text-center bg-primary-lighter p-5 rounded-lg transition-all duration-150 hover:shadow-lg hover:-translate-y-1">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-light text-primary mb-4">
+                        <i class="fas fa-car text-xl"></i>
+                    </div>
+                    <h3 class="text-gray-900 font-medium">Auto Parts</h3>
+                </div>
+                
+                <!-- Category 23 -->
+                <div data-aos="fade-up" data-aos-delay="1200" 
+                    class="text-center bg-primary-lighter p-5 rounded-lg transition-all duration-150 hover:shadow-lg hover:-translate-y-1">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-light text-primary mb-4">
+                        <i class="fas fa-seedling text-xl"></i>
+                    </div>
+                    <h3 class="text-gray-900 font-medium">Garden Centers</h3>
+                </div>
+                
+                <!-- Category 24 -->
+                <div data-aos="fade-up" data-aos-delay="1250" 
+                    class="text-center bg-primary-lighter p-5 rounded-lg transition-all duration-150 hover:shadow-lg hover:-translate-y-1">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-light text-primary mb-4">
+                        <i class="fas fa-vest text-xl"></i>
+                    </div>
+                    <h3 class="text-gray-900 font-medium">Outdoor & Camping</h3>
+                </div>
+            </div>
+            
+            <!-- View more button -->
+            <div class="mt-12 text-center">
+                <button data-aos="fade-up" data-aos-delay="100" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary hover-bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary0">
+                    <span>View all categories</span>
+                    <svg class="ml-2 -mr-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- AI Capabilities Section -->
+    <div id="ai" class="py-32 bg-gray-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 data-aos="fade-up" class="text-base font-semibold text-primary tracking-wide uppercase">AI
+                    Capabilities</h2>
+                <p data-aos="fade-up" data-aos-delay="100"
+                    class="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight">
+                    Powered by artificial intelligence
+                </p>
+                <p data-aos="fade-up" data-aos-delay="200" class="max-w-xl mt-6 mb-2 mx-auto text-xl text-gray-500">
+                    Our platform leverages cutting-edge AI to transform your retail business with intelligent automation
+                    and insights.
+                </p>
+            </div>
+
+            <div class="mt-20">
+                <div class="lg:grid lg:grid-cols-3 lg:gap-8">
+                    <!-- AI Feature 1 -->
+                    <div data-aos="fade-up" data-aos-delay="100" class="relative mb-12 lg:mb-0">
+                        <div class="bg-white rounded-xl shadow-sm p-6">
+                            <div
+                                class="mb-5 flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
+                                <i class="fas fa-brain text-lg"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Predictive Analytics</h3>
+                            <p class="text-base text-gray-600 mb-4">
+                                Forecast sales trends, predict inventory needs, and anticipate customer behavior with
+                                machine learning models trained on your business data.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <span class="flex-shrink-0 h-5 w-5 text-primary">
+                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                    <span class="ml-2 text-gray-600">Demand forecasting</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="flex-shrink-0 h-5 w-5 text-primary">
+                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                    <span class="ml-2 text-gray-600">Inventory optimization</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="flex-shrink-0 h-5 w-5 text-primary">
+                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                    <span class="ml-2 text-gray-600">Sales trend analysis</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="absolute -top-3 -right-3 floating">
+                            <div class="h-24 w-24 bg-gradient-to-br from-primary-light to-primary rounded-full opacity-20"></div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="fas fa-bolt text-primary text-lg opacity-50"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Feature 2 -->
+                    <div data-aos="fade-up" data-aos-delay="200" class="relative mb-12 lg:mb-0">
+                        <div class="bg-white rounded-xl shadow-sm p-6">
+                            <div
+                                class="mb-5 flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
+                                <i class="fas fa-user-cog text-lg"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Personalization Engine</h3>
+                            <p class="text-base text-gray-600 mb-4">
+                                Deliver tailored shopping experiences with AI that learns from customer behavior to
+                                provide relevant product recommendations.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <span class="flex-shrink-0 h-5 w-5 text-primary">
+                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                    <span class="ml-2 text-gray-600">Dynamic product recommendations</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="flex-shrink-0 h-5 w-5 text-primary">
+                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                    <span class="ml-2 text-gray-600">Behavioral targeting</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="flex-shrink-0 h-5 w-5 text-primary">
+                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                    <span class="ml-2 text-gray-600">Custom shopping experiences</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="absolute -top-3 -right-3 floating" style="animation-delay: 0.5s;">
+                            <div class="h-24 w-24 bg-gradient-to-br from-primary-light to-primary rounded-full opacity-20">
+                            </div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="fas fa-users text-primary text-lg opacity-50"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Feature 3 -->
+                    <div data-aos="fade-up" data-aos-delay="300" class="relative">
+                        <div class="bg-white rounded-xl shadow-sm p-6">
+                            <div
+                                class="mb-5 flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
+                                <i class="fas fa-search text-lg"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Intelligent Search</h3>
+                            <p class="text-base text-gray-600 mb-4">
+                                Enhanced search capabilities with natural language processing, typo correction, and
+                                semantic understanding.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <span class="flex-shrink-0 h-5 w-5 text-primary">
+                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                    <span class="ml-2 text-gray-600">Natural language understanding</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="flex-shrink-0 h-5 w-5 text-primary">
+                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                    <span class="ml-2 text-gray-600">Auto-correction & suggestions</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="flex-shrink-0 h-5 w-5 text-primary">
+                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                    <span class="ml-2 text-gray-600">Semantic search capabilities</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="absolute -top-3 -right-3 floating" style="animation-delay: 1s;">
+                            <div class="h-24 w-24 bg-gradient-to-br from-primary-light to-primary rounded-full opacity-20">
+                            </div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="fas fa-search text-primary text-lg opacity-50"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- AI Feature 3 -->
+                    <div data-aos="fade-up" data-aos-delay="300" class="relative mb-12 lg:mb-0">
+                        <div class="bg-white rounded-xl shadow-sm p-6">
+                            <div
+                                class="mb-5 flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
+                                <i class="fas fa-robot text-lg"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Visual Recognition AI</h3>
+                            <p class="text-base text-gray-600 mb-4">
+                                Computer vision technology that identifies products, analyzes shelf displays, and automates visual inventory management.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <span class="flex-shrink-0 h-5 w-5 text-primary">
+                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                    <span class="ml-2 text-gray-600">Instant product recognition</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="flex-shrink-0 h-5 w-5 text-primary">
+                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                    <span class="ml-2 text-gray-600">Shelf analysis & compliance</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="flex-shrink-0 h-5 w-5 text-primary">
+                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                    <span class="ml-2 text-gray-600">Visual inventory counting</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="absolute -top-3 -right-3 floating" style="animation-delay: 2s;">
+                            <div class="h-24 w-24 bg-gradient-to-br from-primary-light to-primary rounded-full opacity-20"></div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="fas fa-camera text-primary text-lg opacity-50"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- AI Feature 5 - Intelligent Autocomplete -->
+                    <div data-aos="fade-up" data-aos-delay="500" class="relative mb-12 lg:mb-0">
+                        <div class="bg-white rounded-xl shadow-sm p-6">
+                            <div
+                                class="mb-5 flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
+                                <i class="fas fa-magic text-lg"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Intelligent Autocomplete</h3>
+                            <p class="text-base text-gray-600 mb-4">
+                                Predictive text and smart suggestions throughout the system save time and reduce errors in data entry.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <span class="flex-shrink-0 h-5 w-5 text-primary">
+                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                    <span class="ml-2 text-gray-600">Context-aware suggestions</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="flex-shrink-0 h-5 w-5 text-primary">
+                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                    <span class="ml-2 text-gray-600">Smart form completion</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="flex-shrink-0 h-5 w-5 text-primary">
+                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                    <span class="ml-2 text-gray-600">Error prevention</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="absolute -top-3 -right-3 floating" style="animation-delay: 4s;">
+                            <div class="h-24 w-24 bg-gradient-to-br from-primary-light to-primary rounded-full opacity-20"></div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="fas fa-keyboard text-primary text-lg opacity-50"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- AI Feature 6 - AI Chatbot -->
+                    <div data-aos="fade-up" data-aos-delay="600" class="relative mb-12 lg:mb-0">
+                        <div class="bg-white rounded-xl shadow-sm p-6">
+                            <div
+                                class="mb-5 flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
+                                <i class="fas fa-robot text-lg"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">AI Assistant Chatbot</h3>
+                            <p class="text-base text-gray-600 mb-4">
+                                Powerful AI chatbot that understands natural language queries and helps staff and customers find exactly what they need.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <span class="flex-shrink-0 h-5 w-5 text-primary">
+                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                    <span class="ml-2 text-gray-600">Unlimited query handling</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="flex-shrink-0 h-5 w-5 text-primary">
+                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                    <span class="ml-2 text-gray-600">Product recommendations</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="flex-shrink-0 h-5 w-5 text-primary">
+                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                    <span class="ml-2 text-gray-600">24/7 customer support</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="absolute -top-3 -right-3 floating" style="animation-delay: 5s;">
+                            <div class="h-24 w-24 bg-gradient-to-br from-primary-light to-primary rounded-full opacity-20"></div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="fas fa-comments text-primary text-lg opacity-50"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Advanced AI Showcase -->
+                <div class="mt-24">
+                    <div class="text-center mb-16">
+                        <h3 data-aos="fade-up" class="text-3xl font-bold text-gray-900">Advanced AI Capabilities</h3>
+                        <p data-aos="fade-up" data-aos-delay="100" class="mt-4 max-w-3xl mx-auto text-xl text-gray-500">
+                            Bento's cutting-edge AI goes beyond basic automation to deliver business-transforming intelligence.
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Advanced AI Feature 1 -->
+                        <div data-aos="fade-up" data-aos-delay="100" class="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
+                            <div class="h-14 w-14 rounded-md bg-primary-lighter mb-5 flex items-center justify-center">
+                                <i class="fas fa-chart-line text-primary text-xl"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900 mb-2">Dynamic Pricing AI</h4>
+                            <p class="text-gray-600">
+                                Automatically optimize prices based on demand, competition, inventory levels, and customer behavior to maximize profits.
+                            </p>
+                        </div>
+                        
+                        <!-- Advanced AI Feature 2 -->
+                        <div data-aos="fade-up" data-aos-delay="200" class="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
+                            <div class="h-14 w-14 rounded-md bg-primary-lighter mb-5 flex items-center justify-center">
+                                <i class="fas fa-shield-alt text-primary text-xl"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900 mb-2">Fraud Detection</h4>
+                            <p class="text-gray-600">
+                                Machine learning algorithms that identify suspicious transaction patterns and protect your business from fraud in real-time.
+                            </p>
+                        </div>
+                        
+                        <!-- Advanced AI Feature 3 -->
+                        <div data-aos="fade-up" data-aos-delay="300" class="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
+                            <div class="h-14 w-14 rounded-md bg-primary-lighter mb-5 flex items-center justify-center">
+                                <i class="fas fa-comment-dots text-primary text-xl"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900 mb-2">Sentiment Analysis</h4>
+                            <p class="text-gray-600">
+                                Analyze customer reviews and social media mentions to understand sentiment and identify product improvement opportunities.
+                            </p>
+                        </div>
+                        
+                        <!-- Advanced AI Feature 4 -->
+                        <div data-aos="fade-up" data-aos-delay="400" class="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
+                            <div class="h-14 w-14 rounded-md bg-primary-lighter mb-5 flex items-center justify-center">
+                                <i class="fas fa-truck text-primary text-xl"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900 mb-2">Supply Chain AI</h4>
+                            <p class="text-gray-600">
+                                Predictive models optimize your supply chain, reduce costs, and minimize disruptions with intelligent forecasting.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                        <!-- Advanced AI Feature 5 -->
+                        <div data-aos="fade-up" data-aos-delay="500" class="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
+                            <div class="h-14 w-14 rounded-md bg-primary-lighter mb-5 flex items-center justify-center">
+                                <i class="fas fa-comments text-primary text-xl"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900 mb-2">Natural Language Interface</h4>
+                            <p class="text-gray-600">
+                                Ask questions about your business in plain English. "Show me last month's top-selling products" or "Compare Q1 sales to last year" - our AI understands and delivers instant answers.
+                            </p>
+                        </div>
+                        
+                        <!-- Advanced AI Feature 6 -->
+                        <div data-aos="fade-up" data-aos-delay="600" class="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
+                            <div class="h-14 w-14 rounded-md bg-primary-lighter mb-5 flex items-center justify-center">
+                                <i class="fas fa-users text-primary text-xl"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900 mb-2">Customer Journey AI</h4>
+                            <p class="text-gray-600">
+                                Track and analyze the complete customer journey across all touchpoints - from initial discovery through purchase, returns, and repeat business - to improve conversion rates and customer lifetime value.
+                            </p>
+                        </div>
+                    </div>
+                    
+
+                </div>
+            </div>
+
+            <!-- AI Demo Animation -->
+            <div data-aos="fade-up" data-aos-delay="400"
+                class="mt-20 relative bg-primary rounded-xl p-8 lg:p-12 overflow-hidden">
+                <!-- Solid background with subtle gradient overlay -->
+                <div class="absolute inset-0 bg-gradient-to-r from-primary to-primary-darker opacity-90"></div>
+                <div class="absolute inset-0 opacity-5">
+                    <svg width="100%" height="100%" viewBox="0 0 800 800">
+                        <defs>
+                            <pattern id="pattern-circles" x="0" y="0" width="20" height="20"
+                                patternUnits="userSpaceOnUse" patternContentUnits="userSpaceOnUse">
+                                <circle id="pattern-circle" cx="10" cy="10" r="1" fill="#FFF"></circle>
+                            </pattern>
+                        </defs>
+                        <rect x="0" y="0" width="100%" height="100%" fill="url(#pattern-circles)"></rect>
+                    </svg>
+                </div>
+                <div class="relative z-10 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
+                    <div class="mb-8 lg:mb-0">
+                        <h3 class="text-2xl font-bold text-white mb-4">Experience the power of AI</h3>
+                        <p class="text-primary-lightest mb-6">
+                            See how our AI-powered platform can transform your retail business with real-time insights,
+                            personalized recommendations, and intelligent automation.
+                        </p>
+                        <a href="#demo"
+                            class="inline-flex items-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-primary bg-white hover:bg-primary-lighter">
+                            <i class="fas fa-play-circle mr-2"></i> Watch Demo
+                        </a>
+                    </div>
+                    <div class="relative h-64 lg:h-80 mt-8 lg:mt-0">
+                        <!-- Animation Placeholder -->
+                        <div
+                            class="h-full bg-white bg-opacity-10 backdrop-filter backdrop-blur-sm rounded-lg overflow-hidden border border-white border-opacity-20 w-full">
+                            <div class="h-full w-full flex items-center justify-center">
+                                <div class="relative w-20 h-20">
+                                    <!-- Animated Brain Icon -->
+                                    <svg class="w-full h-full text-white pulse" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                            d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                    </svg>
+                                    <!-- Animated Ripple Effect -->
+                                    <span
+                                        class="animate-ping absolute h-full w-full rounded-full bg-white opacity-20"></span>
+                                </div>
+                                <!-- Additional Animated Elements -->
+                                <div class="absolute left-2 -bottom-10 floating" style="animation-delay: 0.3s;">
+                                    <svg class="h-16 w-16 text-white opacity-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                                    </svg>
+                                </div>
+                                <div class="absolute right-5 -top-12 floating" style="animation-delay: 0.7s;">
+                                    <svg class="h-10 w-10 text-white opacity-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <!-- Animated Data Points -->
+                            <div class="absolute top-4 left-4 h-2 w-2 bg-amber-400 rounded-full animate-pulse"></div>
+                            <div class="absolute top-12 right-8 h-2 w-2 bg-amber-400 rounded-full animate-pulse"
+                                style="animation-delay: 0.5s"></div>
+                            <div class="absolute bottom-8 left-1/4 h-2 w-2 bg-amber-400 rounded-full animate-pulse"
+                                style="animation-delay: 1s"></div>
+                            <div class="absolute bottom-4 right-1/4 h-2 w-2 bg-amber-400 rounded-full animate-pulse"
+                                style="animation-delay: 1.5s"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Testimonials Section -->
+    <div id="testimonials" class="py-32 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 data-aos="fade-up" class="text-base font-semibold text-primary tracking-wide uppercase">
+                    Testimonials</h2>
+                <p data-aos="fade-up" data-aos-delay="100"
+                    class="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight">
+                    What our clients say
+                </p>
+                <p data-aos="fade-up" data-aos-delay="200" class="max-w-xl mt-6 mb-2 mx-auto text-xl text-gray-500">
+                    Don't just take our word for it. Hear from retailers who have transformed their businesses with our
+                    platform.
+                </p>
+            </div>
+
+            <div class="mt-20 grid gap-8 lg:grid-cols-3">
+                <!-- Testimonial 1 -->
+                <div data-aos="fade-up" data-aos-delay="100"
+                    class="bg-white rounded-xl shadow-sm p-8 border border-gray-200">
+                    <div class="flex items-center mb-6">
+                        <div
+                            class="h-12 w-12 rounded-full border-2 border-primary flex items-center justify-center text-primary font-bold text-xl">
+                            JD</div>
+                        <div class="ml-4">
+                            <h4 class="text-lg font-semibold text-gray-900">John Doe</h4>
+                            <p class="text-gray-600">CEO, Fashion Retailer</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"The AI-powered recommendations have increased our average order
+                        value by 28%. The platform paid for itself within the first 3 months."</p>
+                    <div class="mt-4 flex">
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div data-aos="fade-up" data-aos-delay="200"
+                    class="bg-white rounded-xl shadow-sm p-8 border border-gray-200">
+                    <div class="flex items-center mb-6">
+                        <div
+                            class="h-12 w-12 rounded-full border-2 border-primary flex items-center justify-center text-primary font-bold text-xl">
+                            SK</div>
+                        <div class="ml-4">
+                            <h4 class="text-lg font-semibold text-gray-900">Sarah Kim</h4>
+                            <p class="text-gray-600">Operations Director, Electronics Store</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"The inventory optimization alone has reduced our carrying costs by
+                        22%. We're now able to predict demand with 94% accuracy."</p>
+                    <div class="mt-4 flex">
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div data-aos="fade-up" data-aos-delay="300"
+                    class="bg-white rounded-xl shadow-sm p-8 border border-gray-200">
+                    <div class="flex items-center mb-6">
+                        <div
+                            class="h-12 w-12 rounded-full border-2 border-primary flex items-center justify-center text-primary font-bold text-xl">
+                            MP</div>
+                        <div class="ml-4">
+                            <h4 class="text-lg font-semibold text-gray-900">Michael Patel</h4>
+                            <p class="text-gray-600">CTO, Home Goods Chain</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"The integration was seamless and the AI-enhanced search has
+                        improved conversion rates by 35%. Customer satisfaction scores have never been higher."</p>
+                    <div class="mt-4 flex">
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star-half-alt text-primary"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact Section -->
+    <div id="contact" class="py-32 bg-gray-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 data-aos="fade-up" class="text-base font-semibold text-primary tracking-wide uppercase">Contact Us
+                </h2>
+                <p data-aos="fade-up" data-aos-delay="100"
+                    class="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight">
+                    Ready to transform your retail business?
+                </p>
+                <p data-aos="fade-up" data-aos-delay="200" class="max-w-xl mt-6 mb-2 mx-auto text-xl text-gray-500">
+                    Let's discuss how our AI-powered retail ERP solution can help you grow your business.
+                </p>
+            </div>
+
+            <div class="mt-20 lg:grid lg:grid-cols-2 lg:gap-8">
+                <!-- Contact Form -->
+                <div data-aos="fade-up" data-aos-delay="100" class="bg-white rounded-xl shadow-sm p-8">
+                    <form>
+                        <div class="mb-6">
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                            <input type="text" id="name" name="name"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary0 focus:border-transparent"
+                                placeholder="Your full name">
+                        </div>
+                        <div class="mb-6">
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email
+                                Address</label>
+                            <input type="email" id="email" name="email"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary0 focus:border-transparent"
+                                placeholder="you@example.com">
+                        </div>
+                        <div class="mb-6">
+                            <label for="company" class="block text-sm font-medium text-gray-700 mb-2">Company</label>
+                            <input type="text" id="company" name="company"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary0 focus:border-transparent"
+                                placeholder="Your company name">
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                            <textarea id="message" name="message" rows="4"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary0 focus:border-transparent"
+                                placeholder="Tell us about your business needs"></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-primary hover-bg-primary-dark text-white font-medium py-3 px-4 rounded-md transition-colors">
+                            Request Demo
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div data-aos="fade-up" data-aos-delay="200" class="mt-12 lg:mt-0 flex flex-col justify-center">
+                    <div class="bg-primary rounded-xl p-8 text-white overflow-hidden relative">
+                        
+                        <h3 class="text-2xl font-bold mb-6 relative z-10">Get in touch</h3>
+                        <div class="space-y-6 relative z-10">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt text-primary-lightest mt-1"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-lg font-medium text-white">Our Location</p>
+                                    <p class="text-primary-lightest">123 Innovation Drive, San Francisco, CA 94103</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-envelope text-primary-lightest mt-1"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-lg font-medium text-white">Email Us</p>
+                                    <p class="text-primary-lightest">info@bento.it.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-phone-alt text-primary-lightest mt-1"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-lg font-medium text-white">Call Us</p>
+                                    <p class="text-primary-lightest">+1 (555) 123-4567</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-8 flex space-x-4 relative z-10">
+                            <a href="#"
+                                class="h-10 w-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center text-white hover:bg-opacity-30 transition-all">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#"
+                                class="h-10 w-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center text-white hover:bg-opacity-30 transition-all">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#"
+                                class="h-10 w-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center text-white hover:bg-opacity-30 transition-all">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#"
+                                class="h-10 w-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center text-white hover:bg-opacity-30 transition-all">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Column 1 -->
+                <div>
+                    <div class="flex items-center">
+                        <svg class="h-8 w-auto text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                        </svg>
+                        <span class="ml-2 text-xl font-bold">Bento</span>
+                    </div>
+                    <p class="mt-4 text-gray-400">
+                        Empowering retailers with AI-driven solutions for inventory, sales, customer management, and
+                        e-commerce.
+                    </p>
+                    <div class="mt-6 flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-amber-400 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-amber-400 transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-amber-400 transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-amber-400 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Solutions</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Inventory
+                                Management</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Point of Sale</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">E-commerce Platform</a>
+                        </li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">CRM & Marketing</a>
+                        </li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Analytics &
+                                Reporting</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Documentation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Case Studies</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">API Reference</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Support Center</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Company</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Press</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Partners</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-gray-800 text-center text-gray-400">
+                <p>&copy; 2025 Bento. All rights reserved.</p>
+                <div class="mt-4 flex justify-center space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize AOS -->
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
+    </script>
