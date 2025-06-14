@@ -210,6 +210,68 @@
             box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.4);
             transition: all 0.3s ease-in-out;
         }
+
+        /* Curved bottom for hero section - Cloudy Style */
+        .hero-curved-bottom {
+            position: relative;
+        }
+
+        .hero-curved-bottom::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 180px;
+            background: var(--color-primary-50);
+            clip-path: polygon(
+                0 60%, 
+                15% 75%, 
+                25% 65%, 
+                35% 80%, 
+                45% 70%, 
+                55% 85%, 
+                65% 75%, 
+                75% 85%, 
+                85% 70%, 
+                100% 80%, 
+                100% 100%, 
+                0% 100%
+            );
+        }
+
+        /* POS Hardware Section Styles */
+        .pos-hardware-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .pos-hardware-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
+            border-color: var(--color-primary-300);
+        }
+
+        .hardware-feature {
+            position: relative;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hardware-feature::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-primary-500), var(--color-accent-500));
+            border-radius: 0.75rem 0.75rem 0 0;
+        }
     </style>
 </head>
 
@@ -259,7 +321,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <div class="gradient-bg pt-40 pb-36 sm:pt-48 sm:pb-40 overflow-hidden">
+    <div class="gradient-bg pt-40 pb-36 sm:pt-48 sm:pb-40 overflow-hidden hero-curved-bottom">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:grid lg:grid-cols-12 lg:gap-8 lg:items-center">
                 <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
@@ -598,20 +660,19 @@
                         </div>
                     </div>
 
-                    <!-- Feature 9 - Many More -->
+                    <!-- Feature 9 - Supply Chain Management -->
                     <div data-aos="fade-up" data-aos-delay="900" class="pt-10 card-hover transition-all duration-150">
                         <div class="flow-root bg-white rounded-lg px-6 pb-8">
                             <div class="-mt-6">
                                 <div>
                                     <span
                                         class="inline-flex items-center justify-center p-3 bg-primary rounded-md shadow-lg">
-                                        <i class="fas fa-ellipsis-h text-white text-2xl"></i>
+                                        <i class="fas fa-truck-loading text-white text-2xl"></i>
                                     </span>
                                 </div>
-                                <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">And Many More...</h3>
+                                <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">Supply Chain Management</h3>
                                 <p class="mt-5 text-base text-gray-500">
-                                    Discover all the powerful features that make DeepRetail the most comprehensive
-                                    retail management solution in the market.
+                                    Optimize your entire supply chain with automated procurement, vendor management, and intelligent demand forecasting.
                                 </p>
                             </div>
                         </div>
@@ -1009,17 +1070,20 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Seamless Integration Section -->
     <div id="integration" class="py-32 bg-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
-                <h2 data-aos="fade-up" class="text-base font-semibold text-primary tracking-wide uppercase">Unified Ecosystem</h2>
-                <p data-aos="fade-up" data-aos-delay="100" class="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight">
+                <h2 data-aos="fade-up" class="text-base font-semibold text-primary tracking-wide uppercase">Unified
+                    Ecosystem</h2>
+                <p data-aos="fade-up" data-aos-delay="100"
+                    class="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight">
                     Seamless Integration
                 </p>
                 <p data-aos="fade-up" data-aos-delay="200" class="max-w-2xl mt-6 mb-12 mx-auto text-xl text-gray-500">
-                    Connect your entire retail ecosystem with our platform's extensive integration capabilities, eliminating silos and creating a unified workflow.
+                    Connect your entire retail ecosystem with our platform's extensive integration capabilities,
+                    eliminating silos and creating a unified workflow.
                 </p>
             </div>
 
@@ -1027,13 +1091,15 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
                     <!-- Payment Methods Integration -->
                     <div data-aos="fade-up" data-aos-delay="100" class="relative">
-                        <div class="absolute -top-5 -left-5 h-16 w-16 rounded-full bg-primary-lighter flex items-center justify-center">
+                        <div
+                            class="absolute -top-5 -left-5 h-16 w-16 rounded-full bg-primary-lighter flex items-center justify-center">
                             <i class="fas fa-credit-card text-primary text-2xl"></i>
                         </div>
                         <div class="bg-gray-50 rounded-xl p-8 pl-12">
                             <h3 class="text-2xl font-bold text-gray-900 mb-4">Payment Methods</h3>
-                            <p class="text-gray-600 mb-6">Process transactions with all major international and local payment gateways, offering your customers flexibility and convenience.</p>
-                            
+                            <p class="text-gray-600 mb-6">Process transactions with all major international and local
+                                payment gateways, offering your customers flexibility and convenience.</p>
+
                             <div class="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                                 <div class="bg-white p-4 rounded-lg shadow-sm flex items-center justify-center h-16">
                                     <span class="font-semibold text-gray-900">Stripe</span>
@@ -1056,7 +1122,8 @@
                                 <div class="bg-white p-4 rounded-lg shadow-sm flex items-center justify-center h-16">
                                     <span class="font-semibold text-gray-900">Square</span>
                                 </div>
-                                <div class="bg-white p-4 rounded-lg shadow-sm flex items-center justify-center h-16 text-primary">
+                                <div
+                                    class="bg-white p-4 rounded-lg shadow-sm flex items-center justify-center h-16 text-primary">
                                     <span class="font-semibold">+ More</span>
                                 </div>
                             </div>
@@ -1065,13 +1132,15 @@
 
                     <!-- Sales Channels Integration -->
                     <div data-aos="fade-up" data-aos-delay="200" class="relative">
-                        <div class="absolute -top-5 -left-5 h-16 w-16 rounded-full bg-primary-lighter flex items-center justify-center">
+                        <div
+                            class="absolute -top-5 -left-5 h-16 w-16 rounded-full bg-primary-lighter flex items-center justify-center">
                             <i class="fas fa-store text-primary text-2xl"></i>
                         </div>
                         <div class="bg-gray-50 rounded-xl p-8 pl-12">
                             <h3 class="text-2xl font-bold text-gray-900 mb-4">Sales Channels</h3>
-                            <p class="text-gray-600 mb-6">Manage inventory, orders, and listings across all major e-commerce platforms, social media, and physical stores from a single dashboard.</p>
-                            
+                            <p class="text-gray-600 mb-6">Manage inventory, orders, and listings across all major
+                                e-commerce platforms, social media, and physical stores from a single dashboard.</p>
+
                             <div class="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                                 <div class="bg-white p-4 rounded-lg shadow-sm flex items-center justify-center h-16">
                                     <span class="font-semibold text-gray-900">Amazon</span>
@@ -1094,7 +1163,8 @@
                                 <div class="bg-white p-4 rounded-lg shadow-sm flex items-center justify-center h-16">
                                     <span class="font-semibold text-gray-900">TikTok</span>
                                 </div>
-                                <div class="bg-white p-4 rounded-lg shadow-sm flex items-center justify-center h-16 text-primary">
+                                <div
+                                    class="bg-white p-4 rounded-lg shadow-sm flex items-center justify-center h-16 text-primary">
                                     <span class="font-semibold">+ More</span>
                                 </div>
                             </div>
@@ -1103,13 +1173,16 @@
 
                     <!-- Delivery Networks Integration -->
                     <div data-aos="fade-up" data-aos-delay="300" class="relative">
-                        <div class="absolute -top-5 -left-5 h-16 w-16 rounded-full bg-primary-lighter flex items-center justify-center">
+                        <div
+                            class="absolute -top-5 -left-5 h-16 w-16 rounded-full bg-primary-lighter flex items-center justify-center">
                             <i class="fas fa-shipping-fast text-primary text-2xl"></i>
                         </div>
                         <div class="bg-gray-50 rounded-xl p-8 pl-12">
                             <h3 class="text-2xl font-bold text-gray-900 mb-4">Delivery Networks</h3>
-                            <p class="text-gray-600 mb-6">Connect with all major shipping carriers and last-mile delivery services to optimize logistics and provide customers with fast, reliable delivery options.</p>
-                            
+                            <p class="text-gray-600 mb-6">Connect with all major shipping carriers and last-mile
+                                delivery services to optimize logistics and provide customers with fast, reliable
+                                delivery options.</p>
+
                             <div class="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                                 <div class="bg-white p-4 rounded-lg shadow-sm flex items-center justify-center h-16">
                                     <span class="font-semibold text-gray-900">DHL</span>
@@ -1132,7 +1205,8 @@
                                 <div class="bg-white p-4 rounded-lg shadow-sm flex items-center justify-center h-16">
                                     <span class="font-semibold text-gray-900">Lalamove</span>
                                 </div>
-                                <div class="bg-white p-4 rounded-lg shadow-sm flex items-center justify-center h-16 text-primary">
+                                <div
+                                    class="bg-white p-4 rounded-lg shadow-sm flex items-center justify-center h-16 text-primary">
                                     <span class="font-semibold">+ More</span>
                                 </div>
                             </div>
@@ -1141,13 +1215,16 @@
 
                     <!-- Distributor/Wholesaler Integration -->
                     <div data-aos="fade-up" data-aos-delay="400" class="relative">
-                        <div class="absolute -top-5 -left-5 h-16 w-16 rounded-full bg-primary-lighter flex items-center justify-center">
+                        <div
+                            class="absolute -top-5 -left-5 h-16 w-16 rounded-full bg-primary-lighter flex items-center justify-center">
                             <i class="fas fa-warehouse text-primary text-2xl"></i>
                         </div>
                         <div class="bg-gray-50 rounded-xl p-8 pl-12">
                             <h3 class="text-2xl font-bold text-gray-900 mb-4">Distributors & Wholesalers</h3>
-                            <p class="text-gray-600 mb-6">Streamline your supply chain with direct integrations to major distributors and wholesalers, automating procurement and ensuring optimal inventory levels.</p>
-                            
+                            <p class="text-gray-600 mb-6">Streamline your supply chain with direct integrations to major
+                                distributors and wholesalers, automating procurement and ensuring optimal inventory
+                                levels.</p>
+
                             <div class="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                                 <div class="bg-white p-4 rounded-lg shadow-sm flex items-center justify-center h-16">
                                     <span class="font-semibold text-gray-900">Alibaba</span>
@@ -1170,7 +1247,8 @@
                                 <div class="bg-white p-4 rounded-lg shadow-sm flex items-center justify-center h-16">
                                     <span class="font-semibold text-gray-900">Sysco</span>
                                 </div>
-                                <div class="bg-white p-4 rounded-lg shadow-sm flex items-center justify-center h-16 text-primary">
+                                <div
+                                    class="bg-white p-4 rounded-lg shadow-sm flex items-center justify-center h-16 text-primary">
                                     <span class="font-semibold">+ More</span>
                                 </div>
                             </div>
@@ -1180,16 +1258,21 @@
             </div>
 
             <!-- Integration API Callout -->
-            <div data-aos="fade-up" class="mt-16 bg-primary rounded-xl p-8 lg:p-12 text-white text-center relative overflow-hidden">
+            <div data-aos="fade-up"
+                class="mt-16 bg-primary rounded-xl p-8 lg:p-12 text-white text-center relative overflow-hidden">
                 <div class="absolute top-0 right-0 opacity-10">
                     <svg width="400" height="400" viewBox="0 0 200 200">
-                        <path fill="#FFFFFF" d="M47.1,-57.3C59.9,-47.3,68.6,-31.6,73.3,-14.1C77.9,3.4,78.5,22.8,70.8,37.8C63.1,52.8,47.2,63.5,30.3,69.1C13.5,74.8,-4.2,75.5,-21.6,70.6C-38.9,65.7,-55.9,55.3,-65,40.1C-74.1,24.9,-75.3,5,-69.6,-11.3C-64,-27.6,-51.6,-40.3,-38,-50.6C-24.4,-60.9,-9.6,-68.8,3.9,-73.5C17.5,-78.2,34.3,-79.6,47.1,-71.1C59.9,-62.5,68.6,-44,73.3,-26.7V42.3Z" transform="translate(100 100)" />
+                        <path fill="#FFFFFF"
+                            d="M47.1,-57.3C59.9,-47.3,68.6,-31.6,73.3,-14.1C77.9,3.4,78.5,22.8,70.8,37.8C63.1,52.8,47.2,63.5,30.3,69.1C13.5,74.8,-4.2,75.5,-21.6,70.6C-38.9,65.7,-55.9,55.3,-65,40.1C-74.1,24.9,-75.3,5,-69.6,-11.3C-64,-27.6,-51.6,-40.3,-38,-50.6C-24.4,-60.9,-9.6,-68.8,3.9,-73.5C17.5,-78.2,34.3,-79.6,47.1,-71.1C59.9,-62.5,68.6,-44,73.3,-26.7V42.3Z"
+                            transform="translate(100 100)" />
                     </svg>
                 </div>
                 <div class="relative z-10">
                     <h3 class="text-3xl font-bold mb-4">Custom Integration API</h3>
-                    <p class="text-xl opacity-90 max-w-3xl mx-auto mb-8">Need a specific integration not listed here? Our flexible API allows for custom connections to virtually any service or platform.</p>
-                    <a href="#contact" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-primary bg-white hover:bg-primary-lighter focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white transition-colors">
+                    <p class="text-xl opacity-90 max-w-3xl mx-auto mb-8">Need a specific integration not listed here?
+                        Our flexible API allows for custom connections to virtually any service or platform.</p>
+                    <a href="#contact"
+                        class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-primary bg-white hover:bg-primary-lighter focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white transition-colors">
                         <span>Request Custom Integration</span>
                         <i class="fas fa-arrow-right ml-2"></i>
                     </a>
@@ -1197,7 +1280,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- AI Capabilities Section -->
     <div id="ai" class="py-32 bg-gray-50 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1719,6 +1802,308 @@
             </div>
         </div>
     </div>
+
+
+    <!-- POS Hardware Section -->
+    <div class="py-32 bg-gray-100 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 data-aos="fade-up" class="text-base font-semibold text-primary tracking-wide uppercase">Complete
+                    Hardware Solution</h2>
+                <p data-aos="fade-up" data-aos-delay="100"
+                    class="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight">
+                    Branded POS Hardware Kit
+                </p>
+                <p data-aos="fade-up" data-aos-delay="200" class="max-w-3xl mt-6 mx-auto text-xl text-gray-500">
+                    Get everything you need to run your retail business with our comprehensive, branded hardware
+                    solutions.
+                </p>
+            </div>
+
+            <!-- Hardware Showcase -->
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center mb-20">
+                <!-- Hardware Image/Visual -->
+                <div data-aos="fade-right" data-aos-delay="200" class="relative mb-12 lg:mb-0">
+                    <div
+                        class="relative bg-gradient-to-br from-primary-50 to-primary-100 rounded-2xl p-8 overflow-hidden">
+                        <!-- Main POS Terminal -->
+                        <div class="relative z-10 flex justify-center">
+                            <div class="relative">
+                                <div
+                                    class="w-64 h-48 bg-white rounded-xl shadow-2xl border border-gray-200 flex flex-col">
+                                    <!-- Screen -->
+                                    <div class="flex-1 bg-gray-900 rounded-t-xl relative overflow-hidden">
+                                        <div
+                                            class="absolute inset-2 bg-primary rounded-lg flex items-center justify-center">
+                                            <div class="text-white text-center">
+                                                <i class="fas fa-store text-2xl mb-2"></i>
+                                                <div class="text-xs font-semibold">Bento POS</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Base -->
+                                    <div class="h-8 bg-white rounded-b-xl flex items-center justify-center">
+                                        <div class="text-xs font-bold text-primary">BENTO</div>
+                                    </div>
+                                </div>
+
+                                <!-- Card Reader -->
+                                <div
+                                    class="absolute -right-12 top-16 w-16 h-24 bg-white rounded-lg shadow-lg border border-gray-200 flex flex-col items-center justify-center">
+                                    <div class="w-8 h-1 bg-gray-800 rounded mb-2"></div>
+                                    <div class="w-10 h-6 bg-gray-100 rounded border border-gray-300"></div>
+                                    <div class="text-xs font-semibold text-gray-600 mt-1">TAP</div>
+                                </div>
+
+                                <!-- Receipt Printer -->
+                                <div
+                                    class="absolute -left-12 top-20 w-20 h-16 bg-white rounded-lg shadow-lg border border-gray-200 flex items-center justify-center">
+                                    <div class="text-center">
+                                        <i class="fas fa-receipt text-gray-600 text-sm mb-1"></i>
+                                        <div class="text-xs font-semibold text-gray-600">PRINT</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Background Elements -->
+                        <div class="absolute top-10 left-10 w-32 h-32 bg-primary opacity-10 rounded-full blur-xl"></div>
+                        <div
+                            class="absolute bottom-10 right-10 w-24 h-24 bg-accent-500 opacity-10 rounded-full blur-xl">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hardware Details -->
+                <div data-aos="fade-left" data-aos-delay="400">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Professional-Grade Hardware</h3>
+                    <p class="text-gray-600 mb-8">
+                        Our branded hardware solutions are designed specifically for retail environments, offering
+                        reliability, style, and seamless integration with our software platform.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
+                                <i class="fas fa-desktop text-white"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-semibold text-gray-900">All-in-One POS Terminal</h4>
+                                <p class="text-gray-600">High-performance touchscreen terminal with built-in receipt
+                                    printer and customer display.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
+                                <i class="fas fa-credit-card text-white"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-semibold text-gray-900">Smart Payment Reader</h4>
+                                <p class="text-gray-600">Accept all payment methods including contactless, chip, swipe,
+                                    and mobile payments.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
+                                <i class="fas fa-barcode text-white"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-semibold text-gray-900">Barcode Scanner</h4>
+                                <p class="text-gray-600">Lightning-fast 2D barcode scanner for inventory management and
+                                    checkout.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hardware Kit Options -->
+            <!-- <div class="grid grid-cols-1 md:grid-cols-3 gap-8"> -->
+                <!-- Starter Kit -->
+                <!-- <div data-aos="fade-up" data-aos-delay="100" class="pos-hardware-card rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-store text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Starter Kit</h3>
+                    <p class="text-gray-600 mb-6">Perfect for small businesses and boutique stores</p>
+                    <div class="space-y-3 mb-8">
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span class="text-gray-600">Compact POS Terminal</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span class="text-gray-600">Payment Reader</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span class="text-gray-600">Receipt Printer</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span class="text-gray-600">Wireless Scanner</span>
+                        </div>
+                    </div>
+                    <div class="text-3xl font-bold text-primary mb-4">$699</div>
+                    <button
+                        class="w-full bg-primary hover-bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition-colors">
+                        Get Started
+                    </button>
+                </div> -->
+
+                <!-- Professional Kit -->
+                <!-- <div data-aos="fade-up" data-aos-delay="200"
+                    class="pos-hardware-card rounded-2xl p-8 text-center border-2 border-primary relative">
+                    <div
+                        class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-primary text-white px-4 py-1 rounded-full text-sm font-semibold">
+                        Most Popular
+                    </div>
+                    <div class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-shopping-bag text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Professional Kit</h3>
+                    <p class="text-gray-600 mb-6">Comprehensive solution for growing businesses</p>
+                    <div class="space-y-3 mb-8">
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span class="text-gray-600">Dual-Screen POS Terminal</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span class="text-gray-600">Advanced Payment Reader</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span class="text-gray-600">High-Speed Printer</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span class="text-gray-600">Wireless + Wired Scanner</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span class="text-gray-600">Cash Drawer</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span class="text-gray-600">Customer Display</span>
+                        </div>
+                    </div>
+                    <div class="text-3xl font-bold text-primary mb-4">$1,299</div>
+                    <button
+                        class="w-full bg-primary hover-bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition-colors">
+                        Choose Professional
+                    </button>
+                </div> -->
+
+                <!-- Enterprise Kit -->
+                <!-- <div data-aos="fade-up" data-aos-delay="300" class="pos-hardware-card rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-building text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Enterprise Kit</h3>
+                    <p class="text-gray-600 mb-6">Full-featured solution for large retail operations</p>
+                    <div class="space-y-3 mb-8">
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span class="text-gray-600">Multi-Terminal Setup</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span class="text-gray-600">Enterprise Payment Hub</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span class="text-gray-600">Industrial Printers</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span class="text-gray-600">Multiple Scanners</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span class="text-gray-600">Smart Cash Management</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span class="text-gray-600">Digital Signage Integration</span>
+                        </div>
+                    </div>
+                    <div class="text-3xl font-bold text-primary mb-4">$2,499</div>
+                    <button
+                        class="w-full bg-primary hover-bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition-colors">
+                        Contact Sales
+                    </button>
+                </div>
+            </div> -->
+
+            <!-- Hardware Features -->
+            <!-- <div class="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div data-aos="fade-up" data-aos-delay="100" class="hardware-feature text-center">
+                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shield-alt text-white"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold text-gray-900 mb-2">Secure & Reliable</h4>
+                    <p class="text-gray-600">Enterprise-grade security with end-to-end encryption</p>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="200" class="hardware-feature text-center">
+                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-tools text-white"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold text-gray-900 mb-2">Easy Setup</h4>
+                    <p class="text-gray-600">Plug-and-play installation with guided setup</p>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="300" class="hardware-feature text-center">
+                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-headset text-white"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold text-gray-900 mb-2">24/7 Support</h4>
+                    <p class="text-gray-600">Dedicated hardware support and replacement service</p>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="400" class="hardware-feature text-center">
+                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-sync-alt text-white"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold text-gray-900 mb-2">Auto Updates</h4>
+                    <p class="text-gray-600">Automatic firmware updates and feature enhancements</p>
+                </div>
+            </div> -->
+
+            <!-- CTA Section -->
+            <!-- <div class="mt-20 text-center">
+                <div class="bg-primary rounded-2xl p-12 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-r from-primary to-primary-dark opacity-90"></div>
+                    <div class="relative z-10">
+                        <h3 class="text-3xl font-bold text-white mb-4">Ready to Transform Your Retail Experience?</h3>
+                        <p class="text-xl text-primary-lightest mb-8 max-w-2xl mx-auto">
+                            Join thousands of retailers who trust our complete hardware and software solution to power
+                            their business growth.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <a href="#contact"
+                                class="inline-flex items-center px-8 py-4 bg-white text-primary font-semibold rounded-lg hover:bg-primary-lighter transition-colors">
+                                <i class="fas fa-calculator mr-2"></i>
+                                Get Custom Quote
+                            </a>
+                            <a href="#demo"
+                                class="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-primary transition-colors">
+                                <i class="fas fa-play mr-2"></i>
+                                Watch Hardware Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+
+
     <!-- Testimonials Section -->
     <div id="testimonials" class="py-32 bg-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
